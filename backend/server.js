@@ -5,7 +5,7 @@ require('dotenv').config(); // Load environment variables from .env file
 
 // Initialize express app
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4000;
 
 // Enable CORS for all origins
 app.use(cors());
