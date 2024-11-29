@@ -58,6 +58,6 @@ jobs:
 
           # Step 7: Serve React app using serve
           # Start serving the built React app on a specified port (e.g., 5000)
-          nohup serve -s frontend/build -l 3001 &
+          nohup serve -s frontend/build -l 5000 &
 
         EOF
