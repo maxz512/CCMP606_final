@@ -45,7 +45,7 @@ jobs:
         scp -r frontend/build ec2-user@${{ secrets.EC2_PUBLIC_IP }}:~/CCMP606_final/frontend
 
         # SSH into EC2 to deploy backend and frontend
-        ssh -o ConnectTimeout=60 ec2-user@${{ secrets.EC2_PUBLIC_IP }} << 'EOF'
+        ssh ec2-user@${{ secrets.EC2_PUBLIC_IP }} << 'EOF'
           cd ~/CCMP606_final
 
           # Step 6: Deploy Backend (Start or Restart Backend)
@@ -56,22 +56,8 @@ jobs:
             pm2 start backend/server.js --name "patient-backend"
           fi
 
-          # Step 7: Start serving React App on all network interfaces (0.0.0.0)
-          nohup serve -s frontend/build -l 0.0.0.0:5000 &
-
-          # Optional: Check that backend and frontend are running
-          echo "Checking Backend"
-          curl http://localhost:3000
-          echo "Checking Frontend"
-          curl http://172.31.87.129:5000  # Use public IP if you're testing externally
+          # Step 7: Serve React app using serve
+          # Start serving the built React app on a specified port (e.g., 5000)
+          nohup serve -s frontend/build -l 5000 &
 
         EOF
-
-    # Step 8: Final confirmation to ensure both backend and frontend are accessible
-    - name: Confirm Backend and Frontend Accessibility
-      run: |
-        echo "Testing Backend on EC2"
-        ssh ec2-user@${{ secrets.EC2_PUBLIC_IP }} "curl http://localhost:3000"
-
-        echo "Testing Frontend on EC2"
-        ssh ec2-user@${{ secrets.EC2_PUBLIC_IP }} "curl http://172.31.87.129:5000"  # Use public IP here if needed
