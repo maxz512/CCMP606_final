@@ -62,5 +62,5 @@ jobs:
           # Wait for the server to start
           sleep 10
           # Test if the frontend is accessible
-          curl http://54.197.74.232:5000  # Replace with the actual EC2 public IP
+          curl http://44.210.115.187:5000  # Replace with the actual EC2 public IP
         EOF
