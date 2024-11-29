@@ -54,7 +54,7 @@ jobs:
           if pm2 list | grep -q "patient-backend"; then
             pm2 restart patient-backend
           else
-            pm2 start backend/server.js --name "patient-backend"
+            pm2 start server.js --name "patient-backend"
           fi
 
           # Step 7: Start serving React App
