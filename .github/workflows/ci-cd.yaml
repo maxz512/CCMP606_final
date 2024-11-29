@@ -56,14 +56,8 @@ jobs:
             pm2 start backend/server.js --name "patient-backend"
           fi
 
-          # Step 7: Serve the React frontend
-          # Install serve if it's not already installed
-          npm install -g serve
-
+          # Step 7: Serve React app using serve
           # Start serving the built React app on a specified port (e.g., 5000)
           nohup serve -s frontend/build -l 5000 &
-
-          # Optional: Make sure the frontend is served using Nginx (if configured)
-          # cp -r frontend/build/* /path/to/nginx/html/
 
         EOF
