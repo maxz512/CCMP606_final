@@ -1,0 +1,39 @@
+{
+  "name": "patient-data-management",
+  "version": "1.0.0",
+  "description": "A project for managing patient data",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"No tests yet\" && exit 0",
+    "build": "echo \"Building the project...\"",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.699.0",
+    "@aws-sdk/client-s3": "^3.701.0",
+    "aws-sdk": "^2.1692.0",
+    "axios": "^1.7.8",
+    "body-parser": "^1.20.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "author": "",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maxz512/patient-data-management.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/maxz512/patient-data-management/issues"
+  },
+  "homepage": "https://github.com/maxz512/patient-data-management#readme"
+}
