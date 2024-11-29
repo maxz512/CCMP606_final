@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = "http://18.208.128.79:3000";
+const API_URL = "http://44.210.115.187:3000";
 
 // Function to get a patient by patientId
 export const getPatient = async (patientId) => {
