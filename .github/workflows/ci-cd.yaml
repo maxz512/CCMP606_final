@@ -38,12 +38,27 @@ jobs:
         chmod 600 ~/.ssh/id_rsa
         ssh-keyscan -H ${{ secrets.EC2_PUBLIC_IP }} >> ~/.ssh/known_hosts
 
-    # Step 5: Deploy to EC2 instance
+    # Step 5: Deploy React App to EC2
     - name: Deploy React App to EC2
       run: |
+        # Copy the built React frontend to EC2 instance
         scp -r frontend/build ec2-user@${{ secrets.EC2_PUBLIC_IP }}:~/patient-app/frontend
+
+        # SSH into EC2 to deploy backend and frontend
         ssh ec2-user@${{ secrets.EC2_PUBLIC_IP }} << 'EOF'
           cd ~/patient-app
-          # Optional: Restart backend if required
-          pm2 restart all || pm2 start npm --name "patient-backend" -- start
+
+          # Step 6: Deploy Backend (Start or Restart Backend)
+          # Ensure pm2 is running the backend
+          if pm2 list | grep -q "patient-backend"; then
+            pm2 restart patient-backend
+          else
+            pm2 start backend/server.js --name "patient-backend"
+          fi
+
+          # Step 7: Make sure the frontend is served correctly
+          # If you're using Nginx or a similar tool, make sure to serve the frontend from the build folder
+          # Example: Deploy the frontend to a location that serves static files, e.g. using Nginx
+          # cp -r frontend/build/* /path/to/nginx/html/
+
         EOF
