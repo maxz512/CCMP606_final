@@ -58,9 +58,11 @@ jobs:
           fi
 
           # Step 7: Start serving React App
-          nohup serve -s frontend/build -l 0.0.0.0:5000 &
+          nohup serve -s frontend/build -l 5000 &
           # Wait for the server to start
           sleep 10
           # Test if the frontend is accessible
           curl http://44.210.115.187:5000  # Replace with the actual EC2 public IP
         EOF
+         env:
+          EC2_PUBLIC_IP: ${{ secrets.EC2_PUBLIC_IP }}
