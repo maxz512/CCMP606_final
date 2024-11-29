@@ -16,7 +16,7 @@ function App() {
     const handleSave = async () => {
         const patientData = { name, age, conditions };
         try {
-            const response = await axios.post(`http://34.203.243.233:3000/patients/${patientId}`, patientData);
+            const response = await axios.post(`http://54.197.74.232:3000/patients/${patientId}`, patientData);
             setMessage(response.data.message);
             setIsError(false);
         } catch (error) {
@@ -27,7 +27,7 @@ function App() {
 
     const handleRetrieve = async () => {
         try {
-            const response = await axios.get(`http://34.203.243.233:3000/patients/${patientId}`);
+            const response = await axios.get(`http://54.197.74.232:3000/patients/${patientId}`);
             setRetrievedData(response.data);
             setMessage('');
             setIsError(false);
